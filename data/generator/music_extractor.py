@@ -54,9 +54,9 @@ class SimpleMusicExtractor:
             output_dir = get_output_dir()
 
         self.output_dir = Path(output_dir)
-        self.human_dir = self.output_dir / self.config["dataset"]["human_subdir"]
+        self.human_dir = self.output_dir / self.config.dataset.human_subdir
         self.metadata_file = (
-            self.output_dir / self.config["dataset"]["extraction_metadata_filename"]
+            self.output_dir / self.config.dataset.extraction_metadata_filename
         )
 
         # Create directories
@@ -116,8 +116,8 @@ class SimpleMusicExtractor:
             "format": "bestaudio/best",
             "outtmpl": str(self.human_dir / "%(title)s.%(ext)s"),
             "extractaudio": True,
-            "audioformat": self.config["audio"]["audio_format"],
-            "audioquality": self.config["audio"]["audio_quality"],
+            "audioformat": self.config.audio.audio_format,
+            "audioquality": self.config.audio.audio_quality,
             "noplaylist": True,
             "max_duration": max_duration,
             "writesubtitles": False,

@@ -17,7 +17,7 @@ class AudioSettings(BaseModel):
         default=30, description="Duration for both AI and human music samples"
     )
     max_duration_seconds: int = Field(
-        default=300, description="Maximum duration for YouTube videos (5 minutes)"
+        default=600, description="Maximum duration for YouTube videos (10 minutes)"
     )
     min_duration_seconds: int = Field(
         default=10, description="Minimum duration for YouTube videos"
@@ -29,7 +29,7 @@ class AudioSettings(BaseModel):
 class AIGenerationSettings(BaseModel):
     """AI music generation settings"""
 
-    num_tracks: int = Field(default=2, description="Number of AI tracks to generate")
+    num_tracks: int = Field(default=1, description="Number of AI tracks to generate")
     delay_between_generations: int = Field(
         default=5, description="Seconds to wait between generations"
     )
@@ -61,16 +61,16 @@ class HumanExtractionSettings(BaseModel):
     )
     default_search_terms: List[str] = Field(
         default=[
-            "classical",
-            "jazz",
-            "blues",
-            "folk",
-            "acoustic",
-            "piano",
-            "guitar",
-            "orchestral",
-            "chamber music",
-            "solo instrumental",
+            "classical short",
+            "jazz instrumental short",
+            "piano solo short",
+            "guitar instrumental short",
+            "acoustic guitar short",
+            "violin solo short",
+            "saxophone solo short",
+            "flute solo short",
+            "cello solo short",
+            "trumpet solo short",
         ],
         description="Default search terms for music extraction",
     )
@@ -109,6 +109,13 @@ class HuggingFaceSettings(BaseModel):
         default="AI vs Human Music Classification Dataset",
         description="Default dataset description",
     )
+    auto_upload: bool = Field(
+        default=False,
+        description="Automatically upload to Hugging Face after generation",
+    )
+    dataset_name: str = Field(
+        default="", description="Custom dataset name (empty for auto-generated)"
+    )
 
 
 class LoggingSettings(BaseModel):
@@ -134,8 +141,26 @@ class RateLimitingSettings(BaseModel):
     )
 
 
+class ExtractionModeSettings(BaseModel):
+    """Extraction mode settings"""
+
+    mode: str = Field(
+        default="human", description="Extraction mode: 'ai', 'human', or 'both'"
+    )
+    custom_search_terms: List[str] = Field(
+        default=[],
+        description="Custom search terms for human extraction (overrides default if provided)",
+    )
+
+
 class Config(BaseSettings):
     """Main configuration class using Pydantic Settings"""
+
+    # API Keys
+    replicate_api_token: str = Field(default="", description="Replicate API token")
+    hugging_face_api_key: str = Field(default="", description="Hugging Face API key")
+    free_sound_api_key: str = Field(default="", description="FreeSound API key")
+    free_sound_secret_key: str = Field(default="", description="FreeSound secret key")
 
     # Nested settings
     audio: AudioSettings = Field(default_factory=AudioSettings)
@@ -147,6 +172,9 @@ class Config(BaseSettings):
     huggingface: HuggingFaceSettings = Field(default_factory=HuggingFaceSettings)
     logging: LoggingSettings = Field(default_factory=LoggingSettings)
     rate_limiting: RateLimitingSettings = Field(default_factory=RateLimitingSettings)
+    extraction_mode: ExtractionModeSettings = Field(
+        default_factory=ExtractionModeSettings
+    )
 
     class Config:
         env_prefix = (
@@ -156,6 +184,7 @@ class Config(BaseSettings):
         case_sensitive = False
         env_file = ".env"
         env_file_encoding = "utf-8"
+        extra = "ignore"  # Ignore extra fields that aren't defined
 
     @model_validator(mode="after")
     def apply_legacy_overrides(self):
@@ -166,6 +195,7 @@ class Config(BaseSettings):
             "AI_MUSIC_NUM_TRACKS": ("ai_generation", "num_tracks"),
             "AI_MUSIC_MAX_RESULTS": ("human_extraction", "max_results_per_term"),
             "AI_MUSIC_OUTPUT_DIR": ("dataset", "output_dir"),
+            "AI_MUSIC_EXTRACTION_MODE": ("extraction_mode", "mode"),
         }
 
         for env_var, (section, field) in legacy_mappings.items():
@@ -181,6 +211,13 @@ class Config(BaseSettings):
                         value = int(value)
                     elif field in ["temperature", "top_p"]:
                         value = float(value)
+                    elif field == "mode":
+                        # Validate mode value
+                        if value not in ["ai", "human", "both"]:
+                            print(
+                                f"Warning: Invalid extraction mode '{value}'. Using 'both'."
+                            )
+                            value = "both"
 
                     section_obj = getattr(self, section)
                     setattr(section_obj, field, value)
@@ -190,90 +227,5 @@ class Config(BaseSettings):
         return self
 
 
-# Global config instance
-_config = None
-
-
-def get_config() -> Config:
-    """Get the global configuration instance"""
-    global _config
-    if _config is None:
-        _config = Config()
-    return _config
-
-
-# Quick access functions for backward compatibility
-def get_audio_duration() -> int:
-    """Get audio duration in seconds"""
-    return get_config().audio.duration_seconds
-
-
-def get_max_duration() -> int:
-    """Get maximum duration for YouTube videos"""
-    return get_config().audio.max_duration_seconds
-
-
-def get_min_duration() -> int:
-    """Get minimum duration for YouTube videos"""
-    return get_config().audio.min_duration_seconds
-
-
-def get_num_ai_tracks() -> int:
-    """Get number of AI tracks to generate"""
-    return get_config().ai_generation.num_tracks
-
-
-def get_max_youtube_results() -> int:
-    """Get maximum YouTube results per search term"""
-    return get_config().human_extraction.max_results_per_term
-
-
-def get_output_dir() -> str:
-    """Get output directory"""
-    return get_config().dataset.output_dir
-
-
-def get_search_terms() -> List[str]:
-    """Get default search terms"""
-    return get_config().human_extraction.default_search_terms
-
-
-def get_ai_generation_delay() -> int:
-    """Get delay between AI generations"""
-    return get_config().rate_limiting.ai_generation_delay
-
-
-def get_youtube_download_delay() -> int:
-    """Get delay between YouTube downloads"""
-    return get_config().rate_limiting.youtube_download_delay
-
-
-def get_youtube_search_delay() -> int:
-    """Get delay between YouTube searches"""
-    return get_config().rate_limiting.youtube_search_delay
-
-
-def print_config():
-    """Print current configuration"""
-    config = get_config()
-    print("\n" + "=" * 50)
-    print("CURRENT CONFIGURATION")
-    print("=" * 50)
-    print(f"Audio Duration: {config.audio.duration_seconds} seconds")
-    print(f"Max Duration: {config.audio.max_duration_seconds} seconds")
-    print(f"Min Duration: {config.audio.min_duration_seconds} seconds")
-    print(f"AI Tracks to Generate: {config.ai_generation.num_tracks}")
-    print(
-        f"Max YouTube Results per Term: {config.human_extraction.max_results_per_term}"
-    )
-    print(f"Output Directory: {config.dataset.output_dir}")
-    print(f"AI Generation Delay: {config.rate_limiting.ai_generation_delay} seconds")
-    print(
-        f"YouTube Download Delay: {config.rate_limiting.youtube_download_delay} seconds"
-    )
-    print(f"YouTube Search Delay: {config.rate_limiting.youtube_search_delay} seconds")
-    print("=" * 50)
-
-
-if __name__ == "__main__":
-    print_config()
+# Create a global config instance for easy access
+config = Config()

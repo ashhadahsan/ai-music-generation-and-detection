@@ -1,0 +1,300 @@
+{
+  "ai_generated": [],
+  "human_created": [
+    {
+      "filename": "human_youtube_014_20250919_190841.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_014_20250919_190841.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/iUZe0C8gYpw",
+      "original_title": "MORNING JAZZ, Relaxing Cafe Jazz Vibes - Cafe Music - Morning Jazz Music DEA Channel",
+      "duration": 15,
+      "extraction_timestamp": "20250919_190841",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_016_20250919_190856.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_016_20250919_190856.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/lhjxQ1nLgaI",
+      "original_title": "RELAXING CAFE JAZZ VIBES - Cafe Music - Jazz Music DEA Channel",
+      "duration": 15,
+      "extraction_timestamp": "20250919_190856",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_018_20250919_190911.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_018_20250919_190911.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/14ekwg0TkCI",
+      "original_title": "hardest piano song ever #shorts",
+      "duration": 19,
+      "extraction_timestamp": "20250919_190911",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_026_20250919_190947.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_026_20250919_190947.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/C-PkBkIScS4",
+      "original_title": "#learning #piano #play #shorts",
+      "duration": 19,
+      "extraction_timestamp": "20250919_190947",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_027_20250919_190959.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_027_20250919_190959.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/ZWA-hM-kKMA",
+      "original_title": "Kabhi Jo Badal - Single String Guitar Tabs #shorts #guitar #music",
+      "duration": 12,
+      "extraction_timestamp": "20250919_190959",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_031_20250919_191020.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_031_20250919_191020.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/hFVISTaEgYI",
+      "original_title": "GLADIUS \u2013 'Last Leaves of Time' (LIVE) Fingerstyle Guitar Acoustic",
+      "duration": 15,
+      "extraction_timestamp": "20250919_191020",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_033_20250919_191035.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_033_20250919_191035.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/BTgAgGTZIeQ",
+      "original_title": "acoustic guitar #shorts #shortvideo #guitar #viral #viralvideo #youtube #Aiygorn #\u0e2d\u0e49\u0e32\u0e22\u0e01\u0e23 #foryou",
+      "duration": 12,
+      "extraction_timestamp": "20250919_191035",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_036_20250919_191053.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_036_20250919_191053.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/2fiM14V8UZM",
+      "original_title": "Monkey Can Play Acoustic Guitar Goes Viral #empudstudiogrup #empudstudio #shorts",
+      "duration": 15,
+      "extraction_timestamp": "20250919_191053",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_037_20250919_191109.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_037_20250919_191109.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/7VM-BRXjuXw",
+      "original_title": "NEVER play these songs on acoustic guitar #shorts",
+      "duration": 28,
+      "extraction_timestamp": "20250919_191109",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_038_20250919_191122.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_038_20250919_191122.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/XFUK6ZQw7Ug",
+      "original_title": "Careless Whisper - Acoustic Guitar",
+      "duration": 12,
+      "extraction_timestamp": "20250919_191122",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_039_20250919_191135.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_039_20250919_191135.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/WxjFboz5fqc",
+      "original_title": "Guitar acoustic\ud83d\udc83\ud83c\udffb\ud83c\udfb8\ud83c\udfbc #guitar #guitarcover #music #guitarist #shorts",
+      "duration": 10,
+      "extraction_timestamp": "20250919_191135",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_040_20250919_191146.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_040_20250919_191146.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/YuFbB7I7BOE",
+      "original_title": "my WORST guitar mistake\u2026\u2026\u2026 #shorts",
+      "duration": 17,
+      "extraction_timestamp": "20250919_191146",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_044_20250919_191207.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_044_20250919_191207.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/1mcAiQ8W_IQ",
+      "original_title": "fairytale (violin solo) #shorts",
+      "duration": 11,
+      "extraction_timestamp": "20250919_191207",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_045_20250919_191221.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_045_20250919_191221.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/nRisUWFqZ2w",
+      "original_title": "When all the violinists try to be SOLOISTS...#shorts",
+      "duration": 30,
+      "extraction_timestamp": "20250919_191221",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_048_20250919_191250.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_048_20250919_191250.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/eBC4Zok6xmM",
+      "original_title": "rasputin (violin solo) #shorts",
+      "duration": 20,
+      "extraction_timestamp": "20250919_191250",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_050_20250919_191305.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_050_20250919_191305.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/c7h_uIplZ0k",
+      "original_title": "Solo Violin Improvisation in D Minor #violin #violinist #soloviolin #violinsolo",
+      "duration": 10,
+      "extraction_timestamp": "20250919_191305",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_051_20250919_191324.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_051_20250919_191324.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/D4ZmANpW0t8",
+      "original_title": "If u get this u have a good ear \ud83e\udd17\ud83d\udc42\ud83c\udffc#saxophone#jbalvin#azul#musician#band#marchingband",
+      "duration": 13,
+      "extraction_timestamp": "20250919_191324",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_057_20250919_191402.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_057_20250919_191402.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/UotySLLn5pw",
+      "original_title": "Learn this Candy Dulfer saxophone lick! #saxophone #improvisation #smoothjazz #howtoplaysaxophone",
+      "duration": 13,
+      "extraction_timestamp": "20250919_191402",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_059_20250919_191418.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_059_20250919_191418.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/goacS42HKh8",
+      "original_title": "Just The Two Of Us Alto Sax Sheet Music \ud83c\udfb7 #justthetwoofus #saxophone #sheetmusic #billwithers",
+      "duration": 15,
+      "extraction_timestamp": "20250919_191418",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_060_20250919_191433.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_060_20250919_191433.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/tvmxmD5gHg8",
+      "original_title": "Baker Street - Gabi Rose sax cover #shorts",
+      "duration": 20,
+      "extraction_timestamp": "20250919_191433",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_064_20250919_191509.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_064_20250919_191509.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/QfFy7ZpN0Io",
+      "original_title": "What people think is HARD on the flute \ud83d\ude2e\u200d\ud83d\udca8 #shorts #flute #music",
+      "duration": 17,
+      "extraction_timestamp": "20250919_191509",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_066_20250919_191523.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_066_20250919_191523.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/ro2_-G73ns0",
+      "original_title": "sounds so relaxing #shorts #music #flute #instrumental",
+      "duration": 15,
+      "extraction_timestamp": "20250919_191523",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_067_20250919_191538.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_067_20250919_191538.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/OJdxDEIsP_0",
+      "original_title": "Flute by Pt Rakesh Chaurasia #shorts #classical #india",
+      "duration": 14,
+      "extraction_timestamp": "20250919_191538",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_069_20250919_191552.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_069_20250919_191552.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/mtDNR6dbwoQ",
+      "original_title": "Oboist Attempts Wednesday Cello Scene \ud83e\udee2 #shorts",
+      "duration": 9,
+      "extraction_timestamp": "20250919_191552",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_074_20250919_191617.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_074_20250919_191617.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/DGjx8McTuKo",
+      "original_title": "Interstellar - Cello Version  #celloplayer  #cellocover #playbyear #hanszimmer #interstellar",
+      "duration": 18,
+      "extraction_timestamp": "20250919_191617",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_075_20250919_191630.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_075_20250919_191630.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/v5KK8hhSZU8",
+      "original_title": "Prepare To Be Amazed!",
+      "duration": 29,
+      "extraction_timestamp": "20250919_191630",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_078_20250919_191658.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_078_20250919_191658.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/yf_mL25WGRM",
+      "original_title": "Wednesday Addams - Cello \ud83c\udfbb Paint It Black",
+      "duration": 29,
+      "extraction_timestamp": "20250919_191658",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_083_20250919_191727.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_083_20250919_191727.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/oO2bhmXJ3cA",
+      "original_title": "What if Die With A Smile had a trumpet solo",
+      "duration": 21,
+      "extraction_timestamp": "20250919_191727",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_084_20250919_191739.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_084_20250919_191739.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/wvidTinjcHE",
+      "original_title": "What if Havana had a trumpet solo",
+      "duration": 30,
+      "extraction_timestamp": "20250919_191739",
+      "label": "human_created"
+    }
+  ],
+  "generation_stats": {
+    "total_generated": 35,
+    "successful_generations": 29,
+    "failed_generations": 0
+  }
+}

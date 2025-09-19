@@ -21,19 +21,7 @@ import sys
 import sys
 
 sys.path.append(str(Path(__file__).parent.parent.parent))
-from config import (
-    get_config,
-    get_audio_duration,
-    get_max_duration,
-    get_min_duration,
-    get_num_ai_tracks,
-    get_max_youtube_results,
-    get_output_dir,
-    get_search_terms,
-    get_ai_generation_delay,
-    get_youtube_download_delay,
-    get_youtube_search_delay,
-)
+from config import config
 
 load_dotenv()
 
@@ -54,18 +42,16 @@ class MusicDatasetGenerator:
             output_dir (str): Directory to save generated music and metadata (uses config if None)
         """
         self.client = replicate.Client(api_token=replicate_token)
-        self.config = get_config()
+        self.config = config
 
         # Use config output_dir if not provided
         if output_dir is None:
-            output_dir = get_output_dir()
+            output_dir = config.dataset.output_dir
 
         self.output_dir = Path(output_dir)
-        self.ai_dir = self.output_dir / self.config["dataset"]["ai_subdir"]
-        self.human_dir = self.output_dir / self.config["dataset"]["human_subdir"]
-        self.metadata_file = (
-            self.output_dir / self.config["dataset"]["metadata_filename"]
-        )
+        self.ai_dir = self.output_dir / self.config.dataset.ai_subdir
+        self.human_dir = self.output_dir / self.config.dataset.human_subdir
+        self.metadata_file = self.output_dir / self.config.dataset.metadata_filename
 
         # Create directories
         self.ai_dir.mkdir(parents=True, exist_ok=True)
@@ -219,31 +205,31 @@ class MusicDatasetGenerator:
         try:
             # Use config duration if not provided
             if duration is None:
-                duration = get_audio_duration()
+                duration = config.audio.duration_seconds
 
             logger.info(
                 f"Generating music with prompt: '{prompt}' (duration: {duration}s)"
             )
 
             # Get AI generation config
-            ai_config = self.config["ai_generation"]
+            ai_config = self.config.ai_generation
 
             # Call Meta MusicGen model
             output = self.client.run(
                 "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
                 input={
-                    "top_k": ai_config["top_k"],
-                    "top_p": ai_config["top_p"],
+                    "top_k": ai_config.top_k,
+                    "top_p": ai_config.top_p,
                     "prompt": prompt,
                     "duration": duration,
-                    "temperature": ai_config["temperature"],
+                    "temperature": ai_config.temperature,
                     "continuation": False,
-                    "model_version": ai_config["model_version"],
-                    "output_format": self.config["audio"]["audio_format"],
+                    "model_version": ai_config.model_version,
+                    "output_format": self.config.audio.audio_format,
                     "continuation_start": 0,
                     "multi_band_diffusion": False,
-                    "normalization_strategy": ai_config["normalization_strategy"],
-                    "classifier_free_guidance": ai_config["classifier_free_guidance"],
+                    "normalization_strategy": ai_config.normalization_strategy,
+                    "classifier_free_guidance": ai_config.classifier_free_guidance,
                 },
             )
 
@@ -288,9 +274,9 @@ class MusicDatasetGenerator:
         """
         # Use config values if not provided
         if num_tracks is None:
-            num_tracks = get_num_ai_tracks()
+            num_tracks = config.ai_generation.num_tracks
         if delay_between is None:
-            delay_between = get_ai_generation_delay()
+            delay_between = config.rate_limiting.ai_generation_delay
 
         logger.info(f"Starting batch generation of {num_tracks} AI music tracks")
 
@@ -344,7 +330,7 @@ class MusicDatasetGenerator:
         """
         # Use config value if not provided
         if max_results is None:
-            max_results = get_max_youtube_results()
+            max_results = config.human_extraction.max_results_per_term
 
         logger.info(f"Searching YouTube for music with {len(search_terms)} terms")
 
@@ -390,8 +376,8 @@ class MusicDatasetGenerator:
 
                                 if url:
                                     # Filter for reasonable duration using config
-                                    min_duration = get_min_duration()
-                                    max_duration = get_max_duration()
+                                    min_duration = config.audio.min_duration_seconds
+                                    max_duration = config.audio.max_duration_seconds
                                     if min_duration <= duration <= max_duration:
                                         all_urls.append(url)
                                         logger.info(f"Found: {title} ({duration}s)")
@@ -406,7 +392,7 @@ class MusicDatasetGenerator:
                 logger.error(f"Error searching for {search_term}: {str(e)}")
 
             # Rate limiting between searches using config
-            time.sleep(get_youtube_search_delay())
+            time.sleep(config.rate_limiting.youtube_search_delay)
 
         logger.info(f"Found {len(all_urls)} total YouTube URLs")
         return all_urls
@@ -421,7 +407,7 @@ class MusicDatasetGenerator:
         """
         # Use config value if not provided
         if max_duration is None:
-            max_duration = get_audio_duration()
+            max_duration = config.audio.duration_seconds
 
         logger.info(f"Starting YouTube extraction for {len(urls)} URLs")
 
@@ -429,8 +415,8 @@ class MusicDatasetGenerator:
             "format": "bestaudio/best",
             "outtmpl": str(self.human_dir / "%(title)s.%(ext)s"),
             "extractaudio": True,
-            "audioformat": self.config["audio"]["audio_format"],
-            "audioquality": self.config["audio"]["audio_quality"],
+            "audioformat": self.config.audio.audio_format,
+            "audioquality": self.config.audio.audio_quality,
             "noplaylist": True,
             "max_duration": max_duration,
             "writesubtitles": False,
@@ -496,7 +482,7 @@ class MusicDatasetGenerator:
 
             # Rate limiting using config
             if i < len(urls):
-                delay = get_youtube_download_delay()
+                delay = config.rate_limiting.youtube_download_delay
                 logger.info(f"Waiting {delay} seconds before next extraction...")
                 time.sleep(delay)
 
@@ -520,11 +506,11 @@ class MusicDatasetGenerator:
 
         # Use config values if not provided
         if search_terms is None:
-            search_terms = get_search_terms()
+            search_terms = config.human_extraction.default_search_terms
         if max_results is None:
-            max_results = get_max_youtube_results()
+            max_results = config.human_extraction.max_results_per_term
         if max_duration is None:
-            max_duration = get_audio_duration()
+            max_duration = config.audio.duration_seconds
 
         # Search for YouTube URLs
         youtube_urls = self.search_youtube_music(search_terms, max_results)
@@ -539,7 +525,7 @@ class MusicDatasetGenerator:
 
     def get_sample_search_terms(self):
         """Get sample search terms for music extraction"""
-        return get_search_terms()
+        return config.human_extraction.default_search_terms
 
     def create_training_csv(self, save_local=True):
         """Create a CSV file for training with file paths and labels"""
@@ -813,7 +799,7 @@ If you use this dataset, please cite:
 
 
 def main():
-    """Main function to demonstrate usage"""
+    """Main function to automatically run dataset generation based on configuration"""
 
     # Set your Replicate API token
     REPLICATE_TOKEN = os.getenv("REPLICATE_API_TOKEN")
@@ -823,77 +809,70 @@ def main():
         print("Get your token from: https://replicate.com/account")
         return
 
+    # Get configuration settings
+    extraction_mode = config.extraction_mode.mode
+    custom_search_terms = config.extraction_mode.custom_search_terms
+    hf_auto_upload = config.huggingface.auto_upload
+    hf_dataset_name = config.huggingface.dataset_name or None
+    hf_private = config.huggingface.default_private
+    hf_push_audio = config.huggingface.default_push_audio
+
     # Initialize generator
     generator = MusicDatasetGenerator(
-        replicate_token=REPLICATE_TOKEN, output_dir="ai_music_dataset"
+        replicate_token=REPLICATE_TOKEN, output_dir=config.dataset.output_dir
     )
 
     print("AI Music Dataset Generator")
     print("=" * 50)
-    print("1. Generate AI music samples only")
-    print("2. Extract human music samples only (YouTube search)")
-    print("3. Full dataset generation (AI + Human)")
+    print(f"Extraction Mode: {extraction_mode}")
+    print(f"Output Directory: {config.dataset.output_dir}")
+    print("=" * 50)
 
-    choice = input("\nEnter your choice (1-3): ").strip()
-
-    if choice in ["1", "3"]:
-        # Generate AI music dataset
-        print("Starting AI music generation...")
+    # Run AI generation if configured
+    if extraction_mode in ["ai", "both"]:
+        print("🤖 Starting AI music generation...")
         generator.batch_generate_ai_music()
+        print("✅ AI music generation completed!")
 
-    if choice in ["2", "3"]:
-        # Extract human music samples using YouTube search
-        print("\n🎵 Human Music Extraction (YouTube Search)")
-        print("Enter music search terms (comma-separated):")
-        print("Examples: classical, jazz, piano, guitar, orchestral")
+    # Run human extraction if configured
+    if extraction_mode in ["human", "both"]:
+        print("\n🎵 Starting human music extraction...")
 
-        search_input = input("Search terms: ").strip()
-        if search_input:
-            search_terms = [term.strip() for term in search_input.split(",")]
-            max_results_input = input(
-                f"Max results per term (default {get_max_youtube_results()}): "
-            ).strip()
-            max_results = int(max_results_input) if max_results_input else None
+        # Use custom search terms if provided, otherwise use defaults
+        search_terms = (
+            custom_search_terms
+            if custom_search_terms
+            else config.human_extraction.default_search_terms
+        )
 
-            print(f"\n🔍 Searching and extracting human music...")
-            generator.extract_human_music_samples(
-                search_terms=search_terms, max_results=max_results
-            )
-        else:
-            print("Using default search terms...")
-            generator.extract_human_music_samples()
+        print(f"Using search terms: {search_terms}")
+        generator.extract_human_music_samples(search_terms=search_terms)
+        print("✅ Human music extraction completed!")
 
     # Create training CSV
+    print("\n📊 Creating training dataset...")
     df = generator.create_training_csv()
+    print("✅ Training CSV created!")
 
     # Print statistics
     generator.print_dataset_stats()
 
-    # Ask about Hugging Face upload
-    hf_choice = input("\nUpload to Hugging Face? (y/n): ").strip().lower()
-    if hf_choice in ["y", "yes"]:
+    # Auto upload to Hugging Face if configured
+    if hf_auto_upload:
+        print("\n🚀 Auto-uploading to Hugging Face...")
         hf_token = os.getenv("HUGGING_FACE_API_KEY")
         if not hf_token:
-            print("HUGGING_FACE_API_KEY not found in environment variables")
-            print("Please set your Hugging Face API key to upload the dataset")
+            print("❌ HUGGING_FACE_API_KEY not found in environment variables")
+            print("Please set your Hugging Face API key to enable auto-upload")
         else:
-            dataset_name = input(
-                "Enter dataset name (or press Enter for auto-generated): "
-            ).strip()
-            if not dataset_name:
-                dataset_name = None
+            print(f"Dataset name: {hf_dataset_name or 'Auto-generated'}")
+            print(f"Private: {hf_private}")
+            print(f"Push audio files: {hf_push_audio}")
 
-            private = input("Make dataset private? (y/n, default: y): ").strip().lower()
-            private = private not in ["n", "no"]
-
-            push_audio = (
-                input("Upload audio files? (y/n, default: y): ").strip().lower()
-            )
-            push_audio = push_audio not in ["n", "no"]
-
-            print("Uploading to Hugging Face...")
             dataset_url = generator.upload_to_huggingface(
-                dataset_name=dataset_name, private=private, push_audio_files=push_audio
+                dataset_name=hf_dataset_name,
+                private=hf_private,
+                push_audio_files=hf_push_audio,
             )
 
             if dataset_url:
@@ -902,10 +881,15 @@ def main():
                 print("❌ Failed to upload dataset to Hugging Face")
 
     print("\n" + "=" * 50)
-    print("NEXT STEPS:")
+    print("DATASET GENERATION COMPLETE!")
     print("=" * 50)
-    print("1. Check the 'ai_music_dataset' folder for all generated files")
+    print(f"1. Check the '{config.dataset.output_dir}' folder for all generated files")
     print("2. Use the generated CSV file for training your classifier")
     print("3. The dataset is ready for AI vs Human music classification!")
+    print("\nConfiguration:")
+    print(f"  - Extraction mode: {extraction_mode}")
+    print(f"  - AI tracks: {config.ai_generation.num_tracks}")
+    print(f"  - Audio duration: {config.audio.duration_seconds}s")
+    print(f"  - Auto HF upload: {hf_auto_upload}")
     print("\nFor Replicate API token: https://replicate.com/account")
     print("For Hugging Face API key: https://huggingface.co/settings/tokens")

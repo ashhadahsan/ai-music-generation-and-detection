@@ -17,7 +17,7 @@ class AudioSettings(BaseModel):
         default=30, description="Duration for both AI and human music samples"
     )
     max_duration_seconds: int = Field(
-        default=600, description="Maximum duration for YouTube videos (10 minutes)"
+        default=1800, description="Maximum duration for YouTube videos (30 minutes)"
     )
     min_duration_seconds: int = Field(
         default=10, description="Minimum duration for YouTube videos"
@@ -29,7 +29,7 @@ class AudioSettings(BaseModel):
 class AIGenerationSettings(BaseModel):
     """AI music generation settings"""
 
-    num_tracks: int = Field(default=1, description="Number of AI tracks to generate")
+    num_tracks: int = Field(default=25, description="Number of AI tracks to generate")
     delay_between_generations: int = Field(
         default=5, description="Seconds to wait between generations"
     )
@@ -52,6 +52,9 @@ class HumanExtractionSettings(BaseModel):
 
     max_results_per_term: int = Field(
         default=10, description="Max YouTube results per search term"
+    )
+    max_total_samples: int = Field(
+        default=25, description="Maximum total human samples to extract"
     )
     delay_between_extractions: int = Field(
         default=2, description="Seconds to wait between extractions"
@@ -110,7 +113,7 @@ class HuggingFaceSettings(BaseModel):
         description="Default dataset description",
     )
     auto_upload: bool = Field(
-        default=False,
+        default=True,
         description="Automatically upload to Hugging Face after generation",
     )
     dataset_name: str = Field(
@@ -145,7 +148,7 @@ class ExtractionModeSettings(BaseModel):
     """Extraction mode settings"""
 
     mode: str = Field(
-        default="human", description="Extraction mode: 'ai', 'human', or 'both'"
+        default="both", description="Extraction mode: 'ai', 'human', or 'both'"
     )
     custom_search_terms: List[str] = Field(
         default=[],

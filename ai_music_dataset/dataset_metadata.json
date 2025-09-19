@@ -1,5 +1,231 @@
 {
-  "ai_generated": [],
+  "ai_generated": [
+    {
+      "filename": "ai_track_001_20250919_212728.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_001_20250919_212728.mp3",
+      "prompt": "Create a uptempo disco piece with acoustic guitar, very melancholic and sad",
+      "duration": 30,
+      "generation_timestamp": "20250919_212728",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_002_20250919_212847.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_002_20250919_212847.mp3",
+      "prompt": "Instrumental ambient track, dark and mysterious mood, 120 BPM",
+      "duration": 30,
+      "generation_timestamp": "20250919_212847",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_003_20250919_213016.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_003_20250919_213016.mp3",
+      "prompt": "R&b music that is melancholic and sad, featuring orchestral arrangement",
+      "duration": 30,
+      "generation_timestamp": "20250919_213016",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_004_20250919_213146.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_004_20250919_213146.mp3",
+      "prompt": "Create a uptempo rock piece with synthesizer and bass, very upbeat and energetic",
+      "duration": 30,
+      "generation_timestamp": "20250919_213146",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_005_20250919_213307.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_005_20250919_213307.mp3",
+      "prompt": "Instrumental trance track, atmospheric and ethereal mood, 120 BPM",
+      "duration": 30,
+      "generation_timestamp": "20250919_213307",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_006_20250919_213426.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_006_20250919_213426.mp3",
+      "prompt": "Cheerful and bright electronic composition using piano and strings",
+      "duration": 30,
+      "generation_timestamp": "20250919_213426",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_007_20250919_213622.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_007_20250919_213622.mp3",
+      "prompt": "Atmospheric and ethereal hip-hop composition using violin and cello",
+      "duration": 30,
+      "generation_timestamp": "20250919_213622",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_008_20250919_213752.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_008_20250919_213752.mp3",
+      "prompt": "Cheerful and bright house composition using saxophone and piano",
+      "duration": 30,
+      "generation_timestamp": "20250919_213752",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_009_20250919_213912.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_009_20250919_213912.mp3",
+      "prompt": "Pop music that is dark and mysterious, featuring electric guitar solo",
+      "duration": 30,
+      "generation_timestamp": "20250919_213912",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_010_20250919_214030.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_010_20250919_214030.mp3",
+      "prompt": "Create a slow tempo hip-hop piece with synthesizer and bass, very groovy and rhythmic",
+      "duration": 30,
+      "generation_timestamp": "20250919_214030",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_011_20250919_214241.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_011_20250919_214241.mp3",
+      "prompt": "Instrumental pop track, melancholic and sad mood, uptempo",
+      "duration": 30,
+      "generation_timestamp": "20250919_214241",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_012_20250919_214401.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_012_20250919_214401.mp3",
+      "prompt": "Instrumental house track, cheerful and bright mood, uptempo",
+      "duration": 30,
+      "generation_timestamp": "20250919_214401",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_013_20250919_214521.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_013_20250919_214521.mp3",
+      "prompt": "Create a slow tempo country piece with piano and strings, very melancholic and sad",
+      "duration": 30,
+      "generation_timestamp": "20250919_214521",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_014_20250919_214645.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_014_20250919_214645.mp3",
+      "prompt": "Instrumental hip-hop track, upbeat and energetic mood, medium tempo",
+      "duration": 30,
+      "generation_timestamp": "20250919_214645",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_015_20250919_214805.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_015_20250919_214805.mp3",
+      "prompt": "Upbeat and energetic trance composition using electric guitar solo",
+      "duration": 30,
+      "generation_timestamp": "20250919_214805",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_016_20250919_214925.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_016_20250919_214925.mp3",
+      "prompt": "Instrumental country track, cheerful and bright mood, variable tempo",
+      "duration": 30,
+      "generation_timestamp": "20250919_214925",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_017_20250919_215046.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_017_20250919_215046.mp3",
+      "prompt": "Create a 80 BPM house piece with synthesizer and bass, very aggressive and intense",
+      "duration": 30,
+      "generation_timestamp": "20250919_215046",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_018_20250919_215219.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_018_20250919_215219.mp3",
+      "prompt": "Romantic and dreamy classical composition using guitar and drums",
+      "duration": 30,
+      "generation_timestamp": "20250919_215219",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_019_20250919_215336.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_019_20250919_215336.mp3",
+      "prompt": "Instrumental ambient track, aggressive and intense mood, medium tempo",
+      "duration": 30,
+      "generation_timestamp": "20250919_215336",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_020_20250919_215455.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_020_20250919_215455.mp3",
+      "prompt": "Create a 140 BPM rock piece with violin and cello, very groovy and rhythmic",
+      "duration": 30,
+      "generation_timestamp": "20250919_215455",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_021_20250919_215614.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_021_20250919_215614.mp3",
+      "prompt": "Melancholic and sad rock composition using saxophone and piano",
+      "duration": 30,
+      "generation_timestamp": "20250919_215614",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_022_20250919_215747.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_022_20250919_215747.mp3",
+      "prompt": "A atmospheric and ethereal techno song with electronic beats, uptempo",
+      "duration": 30,
+      "generation_timestamp": "20250919_215747",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_023_20250919_215906.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_023_20250919_215906.mp3",
+      "prompt": "Dark and mysterious soul composition using violin and cello",
+      "duration": 30,
+      "generation_timestamp": "20250919_215906",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_024_20250919_220026.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_024_20250919_220026.mp3",
+      "prompt": "Atmospheric and ethereal disco composition using piano and strings",
+      "duration": 30,
+      "generation_timestamp": "20250919_220026",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    },
+    {
+      "filename": "ai_track_025_20250919_220209.mp3",
+      "file_path": "ai_music_dataset/ai_generated/ai_track_025_20250919_220209.mp3",
+      "prompt": "A cheerful and bright electronic song with acoustic guitar, 80 BPM",
+      "duration": 30,
+      "generation_timestamp": "20250919_220209",
+      "model": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+      "label": "ai_generated"
+    }
+  ],
   "human_created": [
     {
       "filename": "human_youtube_014_20250919_190841.mp3",
@@ -290,11 +516,261 @@
       "duration": 30,
       "extraction_timestamp": "20250919_191739",
       "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_013_20250919_220334.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_013_20250919_220334.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/iUZe0C8gYpw",
+      "original_title": "MORNING JAZZ, Relaxing Cafe Jazz Vibes - Cafe Music - Morning Jazz Music DEA Channel",
+      "duration": 15,
+      "extraction_timestamp": "20250919_220334",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_015_20250919_220350.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_015_20250919_220350.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/lhjxQ1nLgaI",
+      "original_title": "RELAXING CAFE JAZZ VIBES - Cafe Music - Jazz Music DEA Channel",
+      "duration": 15,
+      "extraction_timestamp": "20250919_220350",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_024_20250919_220436.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_024_20250919_220436.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/jk7Q9HVUMKE",
+      "original_title": "When u hear something and want to play it",
+      "duration": 27,
+      "extraction_timestamp": "20250919_220436",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_025_20250919_220449.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_025_20250919_220449.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/ZWA-hM-kKMA",
+      "original_title": "Kabhi Jo Badal - Single String Guitar Tabs #shorts #guitar #music",
+      "duration": 12,
+      "extraction_timestamp": "20250919_220449",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_016_20250919_220810.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_016_20250919_220810.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/lhjxQ1nLgaI",
+      "original_title": "RELAXING CAFE JAZZ VIBES - Cafe Music - Jazz Music DEA Channel",
+      "duration": 15,
+      "extraction_timestamp": "20250919_220810",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_001_20250919_221545.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_001_20250919_221545.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=9E6b3swbnWg",
+      "original_title": "Chopin - Nocturne op.9 No.2",
+      "duration": 269,
+      "extraction_timestamp": "20250919_221545",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_002_20250919_221621.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_002_20250919_221621.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=Wu0YDJENKiE",
+      "original_title": "A short classical music video of Beethoven\u2019s 9th with beautiful images of Suncheon Bay.",
+      "duration": 110,
+      "extraction_timestamp": "20250919_221621",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_003_20250919_221638.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_003_20250919_221638.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=MfRPdrlSpXA",
+      "original_title": "Short orchestral classical music - Waltzing on the sand",
+      "duration": 106,
+      "extraction_timestamp": "20250919_221638",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_004_20250919_221654.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_004_20250919_221654.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=qWHxfvZIqeA",
+      "original_title": "Moonlight Sonata 1st Movement - Short Version (HD)",
+      "duration": 169,
+      "extraction_timestamp": "20250919_221654",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_007_20250919_221741.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_007_20250919_221741.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=zXDCYvpRW50",
+      "original_title": "\ud83c\udfbb 32 really famous classical pieces you've heard and don't know the name! \ud83c\udfb6",
+      "duration": 577,
+      "extraction_timestamp": "20250919_221741",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_008_20250919_221755.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_008_20250919_221755.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/uFeT7Jcsi3Y",
+      "original_title": "#ghazal #ghulamali #music #clasicalmusic #shortvideo #viral  #ghazal #poetry #shortvideo #shorts",
+      "duration": 38,
+      "extraction_timestamp": "20250919_221755",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_009_20250919_221810.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_009_20250919_221810.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=Ubdhx0htuIc",
+      "original_title": "Classical Violin",
+      "duration": 76,
+      "extraction_timestamp": "20250919_221810",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_010_20250919_221824.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_010_20250919_221824.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=jUCxIbI9cak",
+      "original_title": "Relaxing Jazz Music + Piano + Classic + Lounge (Short Jazz)",
+      "duration": 156,
+      "extraction_timestamp": "20250919_221824",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_011_20250919_221836.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_011_20250919_221836.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=0E1zb3LMAck",
+      "original_title": "Short Saxophone Jazz Song",
+      "duration": 62,
+      "extraction_timestamp": "20250919_221836",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_012_20250919_221852.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_012_20250919_221852.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=OZBFGrJQ5us",
+      "original_title": "Life is too short (Jazz instrumental version) - Isabelle Antena",
+      "duration": 339,
+      "extraction_timestamp": "20250919_221852",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_013_20250919_221906.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_013_20250919_221906.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/iUZe0C8gYpw",
+      "original_title": "MORNING JAZZ, Relaxing Cafe Jazz Vibes - Cafe Music - Morning Jazz Music DEA Channel",
+      "duration": 15,
+      "extraction_timestamp": "20250919_221906",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_014_20250919_221924.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_014_20250919_221924.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=o2HETgPp2wA",
+      "original_title": "Short Romance",
+      "duration": 276,
+      "extraction_timestamp": "20250919_221924",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_015_20250919_221937.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_015_20250919_221937.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=UrSGabfDvw0",
+      "original_title": "Saxophone Jazz Instrumental Short",
+      "duration": 51,
+      "extraction_timestamp": "20250919_221937",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_016_20250919_221949.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_016_20250919_221949.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/lhjxQ1nLgaI",
+      "original_title": "RELAXING CAFE JAZZ VIBES - Cafe Music - Jazz Music DEA Channel",
+      "duration": 15,
+      "extraction_timestamp": "20250919_221949",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_017_20250919_222001.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_017_20250919_222001.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/7sXFFioMTKc",
+      "original_title": "Why is jazz so hard \ud83d\ude2d #jazz #piano #practice #music #shorts",
+      "duration": 57,
+      "extraction_timestamp": "20250919_222001",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_020_20250919_222047.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_020_20250919_222047.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=rmIdGiD1zFo",
+      "original_title": "James Horner - The Ludlows (piano solo - short version)",
+      "duration": 188,
+      "extraction_timestamp": "20250919_222047",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_022_20250919_222117.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_022_20250919_222117.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/9mgkN4gcrRI",
+      "original_title": "All it takes is one Minecraft song to get started! #piano",
+      "duration": 33,
+      "extraction_timestamp": "20250919_222117",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_023_20250919_222130.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_023_20250919_222130.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/JKS5VxVeC-0",
+      "original_title": "Victor's piano solo but Victor knows Chopin",
+      "duration": 54,
+      "extraction_timestamp": "20250919_222130",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_024_20250919_222144.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_024_20250919_222144.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/BSSCLyvRTX0",
+      "original_title": "Heart-Touching Piano \ud83c\udfb9\ud83d\udc96\u0964 #shorts",
+      "duration": 32,
+      "extraction_timestamp": "20250919_222144",
+      "label": "human_created"
+    },
+    {
+      "filename": "human_youtube_025_20250919_222157.mp3",
+      "file_path": "ai_music_dataset/human_created/human_youtube_025_20250919_222157.mp3",
+      "source": "youtube",
+      "source_url": "https://www.youtube.com/shorts/jk7Q9HVUMKE",
+      "original_title": "When u hear something and want to play it",
+      "duration": 27,
+      "extraction_timestamp": "20250919_222157",
+      "label": "human_created"
     }
   ],
   "generation_stats": {
-    "total_generated": 35,
-    "successful_generations": 29,
+    "total_generated": 94,
+    "successful_generations": 79,
     "failed_generations": 0
   }
 }

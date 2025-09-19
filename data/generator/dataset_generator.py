@@ -19,6 +19,8 @@ from huggingface_hub import HfApi, login
 import subprocess
 import sys
 import sys
+import librosa
+import soundfile as sf
 
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from config import config
@@ -189,6 +191,46 @@ class MusicDatasetGenerator:
             prompts.append(prompt)
 
         return prompts
+
+    def trim_audio_file(self, input_path, output_path, target_duration=30):
+        """
+        Trim an audio file to the target duration
+
+        Args:
+            input_path (str): Path to input audio file
+            output_path (str): Path to output trimmed audio file
+            target_duration (int): Target duration in seconds
+        """
+        try:
+            # Load audio file
+            audio, sr = librosa.load(input_path, sr=None)
+
+            # Calculate target samples
+            target_samples = int(target_duration * sr)
+
+            # If audio is shorter than target, pad with silence
+            if len(audio) < target_samples:
+                # Pad with silence at the end
+                padding = target_samples - len(audio)
+                audio = librosa.util.pad_center(audio, target_samples)
+                logger.info(
+                    f"Padded audio from {len(audio)/sr:.1f}s to {target_duration}s"
+                )
+            else:
+                # Trim to target duration (take the middle section)
+                start_sample = (len(audio) - target_samples) // 2
+                audio = audio[start_sample : start_sample + target_samples]
+                logger.info(
+                    f"Trimmed audio from {len(audio)/sr:.1f}s to {target_duration}s"
+                )
+
+            # Save trimmed audio
+            sf.write(output_path, audio, sr)
+            return True
+
+        except Exception as e:
+            logger.error(f"Error trimming audio {input_path}: {e}")
+            return False
 
     def generate_ai_music(self, prompt, filename_prefix="ai_track", duration=None):
         """
@@ -418,7 +460,6 @@ class MusicDatasetGenerator:
             "audioformat": self.config.audio.audio_format,
             "audioquality": self.config.audio.audio_quality,
             "noplaylist": True,
-            "max_duration": max_duration,
             "writesubtitles": False,
             "writeautomaticsub": False,
         }
@@ -435,10 +476,10 @@ class MusicDatasetGenerator:
                     title = info.get("title", f"youtube_track_{i}")
                     duration = info.get("duration", 0)
 
-                    # Skip if too long
-                    if duration > max_duration:
+                    # Skip if too short (but allow longer videos for trimming)
+                    if duration < self.config.audio.min_duration_seconds:
                         logger.warning(
-                            f"Skipping {title} - duration {duration}s > {max_duration}s"
+                            f"Skipping {title} - duration {duration}s < {self.config.audio.min_duration_seconds}s"
                         )
                         continue
 
@@ -454,7 +495,16 @@ class MusicDatasetGenerator:
                         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                         new_filename = f"human_youtube_{i:03d}_{timestamp}.mp3"
                         new_path = self.human_dir / new_filename
-                        downloaded_file.rename(new_path)
+
+                        # Trim audio to target duration
+                        if self.trim_audio_file(
+                            str(downloaded_file), str(new_path), max_duration
+                        ):
+                            # Remove original file after trimming
+                            downloaded_file.unlink()
+                        else:
+                            # If trimming failed, just rename
+                            downloaded_file.rename(new_path)
 
                         # Create metadata entry
                         metadata_entry = {
@@ -492,7 +542,7 @@ class MusicDatasetGenerator:
         )
 
     def extract_human_music_samples(
-        self, search_terms=None, max_results=None, max_duration=None
+        self, search_terms=None, max_results=None, max_duration=None, max_total=None
     ):
         """
         Extract human-created music samples using YouTube search and extraction
@@ -501,6 +551,7 @@ class MusicDatasetGenerator:
             search_terms (list): List of search terms for music (uses config if None)
             max_results (int): Maximum number of results per search term (uses config if None)
             max_duration (int): Maximum duration in seconds to extract (uses config if None)
+            max_total (int): Maximum total samples to extract (uses config if None)
         """
         logger.info("Starting human music extraction using YouTube search")
 
@@ -511,11 +562,20 @@ class MusicDatasetGenerator:
             max_results = config.human_extraction.max_results_per_term
         if max_duration is None:
             max_duration = config.audio.duration_seconds
+        if max_total is None:
+            max_total = config.human_extraction.max_total_samples
 
         # Search for YouTube URLs
         youtube_urls = self.search_youtube_music(search_terms, max_results)
 
         if youtube_urls:
+            # Limit total URLs to max_total
+            if len(youtube_urls) > max_total:
+                logger.info(
+                    f"Limiting {len(youtube_urls)} URLs to {max_total} total samples"
+                )
+                youtube_urls = youtube_urls[:max_total]
+
             # Extract music from found URLs
             self.extract_from_youtube(youtube_urls, max_duration)
         else:

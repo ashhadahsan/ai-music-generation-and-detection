@@ -3,3 +3,5 @@
 *.csv
 .env
 *.webm
+ai_music_dataset/.DS_Store
+.DS_Store

@@ -1,0 +1,10 @@
+{
+  "dataset_name": "ai-music-dataset-20250919_222157",
+  "description": "AI vs Human Music Classification Dataset",
+  "created_by": "AI Music Dataset Generator",
+  "total_samples": 79,
+  "ai_generated_samples": 25,
+  "human_created_samples": 54,
+  "creation_timestamp": "2025-09-19T22:21:57.598588",
+  "model_used": "meta/musicgen:671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb"
+}

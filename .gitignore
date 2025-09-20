@@ -1,5 +1,4 @@
 *.pyc
-*.mp3
 *.csv
 .env
 *.webm

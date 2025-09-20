@@ -27,7 +27,7 @@ class MusicClassificationPipeline:
 
     def __init__(
         self,
-        dataset_name: str = "ashhadahsan/ai-vs-human-music-dataset",
+        dataset_name: str = "ashhadahsan/ai-vs-human-music-with-audio",
         samples_per_class: int = 25,
         model_name: str = "facebook/wav2vec2-base",
         output_dir: str = "./results",
@@ -82,18 +82,9 @@ class MusicClassificationPipeline:
         # Load dataset structure
         dataset_dict = self.data_loader.prepare_dataset_for_training()
 
-        # Check if audio data is already embedded in the dataset
-        sample = dataset_dict["train"][0]
-        if (
-            "audio" in sample
-            and isinstance(sample["audio"], dict)
-            and "array" in sample["audio"]
-        ):
-            logger.info("✅ Audio data already embedded in dataset")
-        else:
-            logger.info("⚠️ No embedded audio data found, loading from local files...")
-            # Load actual audio data from local files
-            dataset_dict = self.data_loader.load_audio_data(dataset_dict)
+        # Always load audio from local files for now (due to torchcodec issues)
+        logger.info("🔄 Loading audio data from local files...")
+        dataset_dict = self.data_loader.load_audio_data(dataset_dict)
 
         logger.info("Dataset loaded successfully")
         return dataset_dict

@@ -134,24 +134,65 @@ class MusicClassificationTrainer:
 
         def preprocess_function(examples):
             """Preprocess batch of examples"""
-            # Get audio arrays and labels
-            audio_arrays = examples["audio"]
-            labels = examples["label"]
+            try:
+                # Get audio arrays and labels
+                audio_arrays = examples["audio"]
+                labels = examples["label"]
 
-            # Process audio through feature extractor
-            inputs = self.processor(
-                audio_arrays,
-                sampling_rate=16000,
-                return_tensors="pt",
-                padding=True,
-                truncation=True,
-            )
+                # Ensure audio arrays are properly formatted
+                processed_audio_arrays = []
+                for i, audio_data in enumerate(audio_arrays):
+                    try:
+                        if isinstance(audio_data, dict):
+                            if "array" in audio_data:
+                                audio_array = audio_data["array"]
+                                # Convert to numpy array if it's a list
+                                if isinstance(audio_array, list):
+                                    audio_array = np.array(
+                                        audio_array, dtype=np.float32
+                                    )
+                                processed_audio_arrays.append(audio_array)
+                            else:
+                                # Fallback: create dummy audio
+                                processed_audio_arrays.append(
+                                    np.zeros(16000, dtype=np.float32)
+                                )
+                        else:
+                            # If it's already an array, use it directly
+                            if isinstance(audio_data, list):
+                                audio_data = np.array(audio_data, dtype=np.float32)
+                            processed_audio_arrays.append(audio_data)
+                    except Exception as e:
+                        logger.warning(f"Error processing audio data {i}: {e}")
+                        # Create dummy audio as fallback
+                        processed_audio_arrays.append(np.zeros(16000, dtype=np.float32))
 
-            return {
-                "input_values": inputs.input_values,
-                "attention_mask": inputs.attention_mask,
-                "labels": torch.tensor(labels, dtype=torch.long),
-            }
+                # Process audio through feature extractor
+                inputs = self.processor(
+                    processed_audio_arrays,
+                    sampling_rate=16000,
+                    return_tensors="pt",
+                    padding=True,
+                    truncation=True,
+                    max_length=480000,  # 30 seconds at 16kHz
+                )
+
+                return {
+                    "input_values": inputs.input_values,
+                    "attention_mask": inputs.attention_mask,
+                    "labels": torch.tensor(labels, dtype=torch.long),
+                }
+            except Exception as e:
+                logger.error(f"Error in preprocess_function: {e}")
+                # Return dummy data as fallback
+                batch_size = len(examples["label"])
+                return {
+                    "input_values": torch.zeros(
+                        (batch_size, 16000), dtype=torch.float32
+                    ),
+                    "attention_mask": torch.ones((batch_size, 16000), dtype=torch.long),
+                    "labels": torch.tensor(examples["label"], dtype=torch.long),
+                }
 
         # Apply preprocessing to all splits
         processed_dataset = dataset_dict.map(

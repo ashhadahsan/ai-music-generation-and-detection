@@ -18,7 +18,7 @@ class MusicDataLoader:
 
     def __init__(
         self,
-        dataset_name: str = "ashhadahsan/ai-vs-human-music-dataset",
+        dataset_name: str = "ashhadahsan/ai-vs-human-music-with-audio",
         samples_per_class: int = 25,
         test_split: float = 0.2,
         val_split: float = 0.2,
@@ -47,6 +47,7 @@ class MusicDataLoader:
         """Load the dataset from HuggingFace Hub"""
         try:
             logger.info(f"Loading dataset: {self.dataset_name}")
+            # Load dataset with audio data
             dataset = load_dataset(self.dataset_name)
 
             # Convert to pandas DataFrame
@@ -56,6 +57,12 @@ class MusicDataLoader:
             # Check if audio data is embedded
             if "audio" in df.columns:
                 logger.info("✅ Audio data found in dataset")
+                # Check a sample to see the audio format
+                sample_audio = df["audio"].iloc[0]
+                if isinstance(sample_audio, dict):
+                    logger.info(f"Audio format: {sample_audio.keys()}")
+                else:
+                    logger.info(f"Audio data type: {type(sample_audio)}")
             else:
                 logger.warning("⚠️ No audio data found in dataset")
 
@@ -179,31 +186,77 @@ class MusicDataLoader:
         return dataset_dict
 
     def load_audio_data(self, dataset_dict: DatasetDict) -> DatasetDict:
-        """Load actual audio data from local files"""
-        import librosa
+        """Load audio data from Hugging Face cloud dataset"""
         import numpy as np
-        from pathlib import Path
+        import librosa
+        import io
 
-        # Base path to the local audio files
-        base_audio_path = Path("ai_music_dataset/huggingface_dataset")
-
-        def load_audio_from_path(example):
-            """Load audio data from local file path using librosa"""
+        def process_audio_data(example):
+            """Process audio data from HuggingFace dataset"""
             try:
-                # The file_path contains the relative path within the dataset
-                relative_path = example["file_path"]
+                # Check if audio data is already present in the dataset
+                if "audio" in example and example["audio"] is not None:
+                    # Audio data is already loaded from HuggingFace
+                    audio_data = example["audio"]
 
-                # Fix the file path - remove the 'ai_music_dataset/' prefix if it exists
-                if relative_path.startswith("ai_music_dataset/"):
-                    relative_path = relative_path.replace("ai_music_dataset/", "")
+                    # Convert HuggingFace audio format to Wav2Vec2 format
+                    if isinstance(audio_data, dict):
+                        if "array" in audio_data and "sampling_rate" in audio_data:
+                            # Audio is already in correct format
+                            return example
+                        elif "bytes" in audio_data:
+                            # Convert from bytes to array using librosa
+                            try:
+                                # Load audio from bytes
+                                audio_bytes = audio_data["bytes"]
+                                audio_array, sr = librosa.load(
+                                    io.BytesIO(audio_bytes), sr=16000
+                                )
 
-                # Construct full path to local audio file
-                audio_path = base_audio_path / relative_path
+                                # Ensure audio_array is a numpy array with proper dtype
+                                audio_array = np.array(audio_array, dtype=np.float32)
 
-                # Check if file exists
-                if not audio_path.exists():
-                    logger.warning(f"Audio file not found: {audio_path}")
-                    # Create dummy audio data for missing files
+                                return {
+                                    **example,
+                                    "audio": {
+                                        "array": audio_array,
+                                        "sampling_rate": sr,
+                                    },
+                                }
+                            except Exception as e:
+                                logger.warning(f"Failed to load audio from bytes: {e}")
+                                # Create dummy audio data
+                                dummy_audio = np.zeros(16000, dtype=np.float32)
+                                return {
+                                    **example,
+                                    "audio": {
+                                        "array": dummy_audio,
+                                        "sampling_rate": 16000,
+                                    },
+                                }
+                        else:
+                            logger.warning(
+                                f"Unknown audio format: {list(audio_data.keys())}"
+                            )
+                            # Create dummy audio data
+                            dummy_audio = np.zeros(16000, dtype=np.float32)
+                            return {
+                                **example,
+                                "audio": {"array": dummy_audio, "sampling_rate": 16000},
+                            }
+                    else:
+                        logger.warning(f"Audio data is not a dict: {type(audio_data)}")
+                        # Create dummy audio data
+                        dummy_audio = np.zeros(16000, dtype=np.float32)
+                        return {
+                            **example,
+                            "audio": {"array": dummy_audio, "sampling_rate": 16000},
+                        }
+                else:
+                    # No audio data found - create dummy data
+                    logger.warning(
+                        f"No audio data found for {example.get('file_path', 'unknown')}"
+                    )
                     dummy_audio = np.zeros(
                         16000, dtype=np.float32
                     )  # 1 second of silence
@@ -211,15 +264,9 @@ class MusicDataLoader:
                         **example,
                         "audio": {"array": dummy_audio, "sampling_rate": 16000},
                     }
-
-                # Load audio with librosa
-                audio_array, sr = librosa.load(str(audio_path), sr=16000)
-
-                # Return the example with audio data in the format expected by Wav2Vec2
-                return {**example, "audio": {"array": audio_array, "sampling_rate": sr}}
             except Exception as e:
                 logger.warning(
-                    f"Failed to load audio from {example.get('file_path', 'unknown')}: {e}"
+                    f"Failed to process audio for {example.get('file_path', 'unknown')}: {e}"
                 )
                 # Create dummy audio data for failed loads
                 dummy_audio = np.zeros(16000, dtype=np.float32)  # 1 second of silence
@@ -228,19 +275,41 @@ class MusicDataLoader:
                     "audio": {"array": dummy_audio, "sampling_rate": 16000},
                 }
 
-        # Apply audio loading to all splits
-        logger.info("Loading audio data from local files...")
+        # Apply audio processing to all splits
+        logger.info("Processing audio data from HuggingFace dataset...")
 
         processed_dataset = DatasetDict()
         for split_name, split_dataset in dataset_dict.items():
-            logger.info(f"Loading audio for {split_name} split...")
-            processed_dataset[split_name] = split_dataset.map(
-                load_audio_from_path,
-                desc=f"Loading audio for {split_name}",
+            logger.info(f"Processing audio for {split_name} split...")
+            processed_split = split_dataset.map(
+                process_audio_data,
+                desc=f"Processing audio for {split_name}",
                 num_proc=1,  # Use single process to avoid issues
             )
 
-        logger.info("Audio loading completed")
+            # Post-process to ensure audio arrays are numpy arrays
+            def fix_audio_array(example):
+                if "audio" in example and isinstance(example["audio"], dict):
+                    if "array" in example["audio"]:
+                        # Convert list back to numpy array if needed
+                        audio_array = example["audio"]["array"]
+                        if isinstance(audio_array, list):
+                            example["audio"]["array"] = np.array(
+                                audio_array, dtype=np.float32
+                            )
+                        elif not isinstance(audio_array, np.ndarray):
+                            example["audio"]["array"] = np.array(
+                                audio_array, dtype=np.float32
+                            )
+                return example
+
+            processed_dataset[split_name] = processed_split.map(
+                fix_audio_array,
+                desc=f"Fixing audio arrays for {split_name}",
+                num_proc=1,
+            )
+
+        logger.info("Audio processing completed")
         return processed_dataset
 
     def get_class_labels(self) -> List[str]:

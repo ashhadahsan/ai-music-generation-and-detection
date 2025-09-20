@@ -82,8 +82,8 @@ class MusicClassificationPipeline:
         # Load dataset structure
         dataset_dict = self.data_loader.prepare_dataset_for_training()
 
-        # Always load audio from local files for now (due to torchcodec issues)
-        logger.info("🔄 Loading audio data from local files...")
+        # Process audio data from HuggingFace cloud dataset
+        logger.info("🔄 Processing audio data from HuggingFace dataset...")
         dataset_dict = self.data_loader.load_audio_data(dataset_dict)
 
         logger.info("Dataset loaded successfully")

@@ -264,7 +264,7 @@ class MusicClassificationTrainer:
         # Initialize data arguments
         self.data_args = DataTrainingArguments(
             audio_column_name="audio",
-            label_column_name="label",
+            label_column_name="label_text",  # Use label_text to match existing data loader
             max_length_seconds=20,
         )
 
@@ -292,6 +292,18 @@ class MusicClassificationTrainer:
             token=self.model_args.token,
             trust_remote_code=self.model_args.trust_remote_code,
         )
+
+        # Convert label_text to numeric labels if needed
+        def convert_labels(example):
+            if "label_text" in example and "label" not in example:
+                # Convert label_text to numeric label
+                label_mapping = {"ai_generated": 0, "human_created": 1}
+                example["label"] = label_mapping.get(example["label_text"], 0)
+            return example
+
+        # Apply label conversion to all splits
+        for split_name in dataset_dict.keys():
+            dataset_dict[split_name] = dataset_dict[split_name].map(convert_labels)
 
         # Cast audio column to proper format
         dataset_dict = dataset_dict.cast_column(
@@ -342,8 +354,8 @@ class MusicClassificationTrainer:
 
     def setup_model(self, dataset_dict, feature_extractor):
         """Setup the model with proper configuration"""
-        # Prepare label mappings
-        labels = dataset_dict["train"].features[self.data_args.label_column_name].names
+        # Prepare label mappings - use predefined labels since we converted them
+        labels = ["ai_generated", "human_created"]
         label2id, id2label = {}, {}
         for i, label in enumerate(labels):
             label2id[label] = str(i)

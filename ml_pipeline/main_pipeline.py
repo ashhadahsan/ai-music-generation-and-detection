@@ -10,10 +10,10 @@ from typing import Dict, List, Optional
 import torch
 import numpy as np
 
-from data_loader import MusicDataLoader
-from wav2vec2_classifier import MusicClassificationTrainer
-from evaluator import ModelEvaluator
-from audio_preprocessor import AudioPreprocessor
+from .data_loader import MusicDataLoader
+from .wav2vec2_classifier import MusicClassificationTrainer
+from .evaluator import ModelEvaluator
+from .audio_preprocessor import AudioPreprocessor
 
 # Set up logging
 logging.basicConfig(
@@ -116,7 +116,7 @@ class MusicClassificationPipeline:
                 "logging_steps": 10,
                 "eval_steps": 50,
                 "save_steps": 100,
-                "evaluation_strategy": "steps",
+                "eval_strategy": "steps",
                 "save_strategy": "steps",
                 "load_best_model_at_end": True,
                 "metric_for_best_model": "eval_accuracy",
@@ -363,7 +363,7 @@ def main():
         "logging_steps": 10,
         "eval_steps": 50,
         "save_steps": 100,
-        "evaluation_strategy": "steps",
+        "eval_strategy": "steps",
         "save_strategy": "steps",
         "load_best_model_at_end": True,
         "metric_for_best_model": "eval_accuracy",

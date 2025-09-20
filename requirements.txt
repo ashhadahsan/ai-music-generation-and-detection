@@ -40,3 +40,9 @@ plotly>=5.15.0
 # Additional ML utilities
 tqdm>=4.65.0
 wandb>=0.15.0
+
+# MuQ-MuLan dependencies
+einops>=0.7.0
+nnAudio>=0.3.1
+easydict>=1.10
+x-clip>=1.0.0

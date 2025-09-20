@@ -112,7 +112,7 @@ class ModelComparator:
         }
         
         try:
-            # Load data once
+            # Load data once (includes audio fix)
             dataset_dict = pipeline.load_data()
             
             # Train model
